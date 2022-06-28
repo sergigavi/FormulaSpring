@@ -2,12 +2,16 @@ package es.sgv.FIA.services;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.sgv.FIA.model.Piloto;
+import es.sgv.FIA.repository.PilotoRepository;
 
 @Service
 public class PilotoServiceImpl implements IPilotoService {
+	
+	@Autowired private PilotoRepository pilotoDAO;
 
 	@Override
 	public boolean annadirPiloto(Piloto piloto) {
@@ -49,6 +53,23 @@ public class PilotoServiceImpl implements IPilotoService {
 	public Piloto deletePilotoById(String id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean addAllPilotos(Iterable<Piloto> pilotos) {
+		
+		boolean exito = false;
+		
+		try {
+			
+			pilotoDAO.saveAll(pilotos);
+			exito = true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return exito;
 	}
 
 }

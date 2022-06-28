@@ -6,6 +6,8 @@ import es.sgv.FIA.model.Piloto;
 
 public interface IPilotoService {
 	
+	public boolean addAllPilotos(Iterable<Piloto> pilotos);
+	
 	public boolean annadirPiloto(Piloto piloto);
 	
 	public boolean agregarPilotoProbadorEnEscuderia(Piloto piloto, String idEscuderia);

@@ -24,7 +24,7 @@ public class Mundial {
 	@Id
 	@NonNull
 	@EqualsAndHashCode.Include
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	
 	private int anno;
