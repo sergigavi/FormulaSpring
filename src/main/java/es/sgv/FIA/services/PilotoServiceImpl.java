@@ -2,8 +2,11 @@ package es.sgv.FIA.services;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import es.sgv.FIA.model.Piloto;
 
+@Service
 public class PilotoServiceImpl implements IPilotoService {
 
 	@Override

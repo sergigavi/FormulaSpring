@@ -16,6 +16,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Singular;
 
 @Data
 @AllArgsConstructor
@@ -41,10 +42,12 @@ public class Escuderia { //si una escuderia está en f1 y f2, estará dos veces,
 	@OneToOne
 	private Piloto pilotoSecundario;
 	
+	@Singular
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idEscuderia")
 	private Set<Piloto> pilotosProbadores;
 	
+	@Singular
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "idEscuderia")
 	private Set<Trabajador> trabajadores;

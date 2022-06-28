@@ -3,7 +3,9 @@ package es.sgv.FIA.model;
 import java.time.LocalDate;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -14,6 +16,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Singular;
 
 @Data
 @AllArgsConstructor
@@ -35,7 +38,8 @@ public class Piloto {
 	
 	private LocalDate fechaNacimiento;
 	
-	@OneToMany
+	@Singular(value = "mundial")
+	@OneToMany(cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
 	@JoinColumn(name = "idPiloto")
 	private Set<Mundial> mundiales; //año categoria
 	

@@ -2,8 +2,11 @@ package es.sgv.FIA.services;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import es.sgv.FIA.model.Escuderia;
 
+@Service
 public class EscuderiaServiceImpl implements IEscuderiaService {
 
 	@Override
