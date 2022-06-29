@@ -16,6 +16,7 @@ import es.sgv.FIA.model.Trabajador;
 import es.sgv.FIA.services.IEscuderiaService;
 import es.sgv.FIA.services.IPilotoService;
 import es.sgv.FIA.services.ITrabajadorService;
+import es.sgv.FIAJSON.FormulaJSON;
 
 @Component //esto no funciona no se por que
 public class FormulaSpringConsoleApp implements CommandLineRunner{
@@ -29,8 +30,24 @@ public class FormulaSpringConsoleApp implements CommandLineRunner{
 		
 		cargarDatos();
 		
+		Set<Escuderia> escuderias = new HashSet<Escuderia>();
+		
+		escuderiaServicio.findAllEscuderias().forEach(e -> escuderias.add(e));
+		
+		guardarDatosEnJSON(escuderias);
+		
 	}
 	
+	private void guardarDatosEnJSON(Set<Escuderia> escuderias) {
+		if (FormulaJSON.escribirJSON(escuderias))
+		{
+			System.out.println("Se ha creado el archivo JSON con las escuderias correctamente");
+		}
+		else {
+			System.err.println("Error creando el json");
+		}
+	}
+
 	private void cargarDatos() {
 		
 		// añado los pilotos
@@ -180,6 +197,7 @@ public class FormulaSpringConsoleApp implements CommandLineRunner{
 						.build())
 				.build());
 		
+		//con esto le añado a mis trabajadores la escuderia en la que están (seguro que hay una forma mejor de hacerlo con el this o algo)
 		escuderias.stream().filter(s -> s.getId().equals("SF_F1")).findFirst().get()
 		.getTrabajadores().stream().filter(t -> t.getId().equals("t1_SF_F1")).findFirst().get().setEscuderia(
 				escuderias.stream().filter(s -> s.getId().equals("SF_F1")).findFirst().get());
@@ -189,7 +207,7 @@ public class FormulaSpringConsoleApp implements CommandLineRunner{
 		escuderiaServicio.findAllEscuderias().forEach(System.out::println);
 		
 		
-		
+		//TODO: Continuar metiendo datos, creando pilotos y escuderias, ademas de incluir más trabajadores
 		
 		
 		

@@ -25,6 +25,9 @@ public class FormulaJSON {
 		
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		
+		gsonBuilder.registerTypeAdapter(LocalDateAdapter.class, new LocalDateAdapter());
+		gsonBuilder.registerTypeAdapter(CategoriaAdapter.class, new CategoriaAdapter());
+		
 		Gson gson = gsonBuilder.create();
 		
 		TypeToken<Set<Escuderia>> listaEscuderias = new TypeToken<Set<Escuderia>>(){};
@@ -48,6 +51,9 @@ public class FormulaJSON {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		
 		gsonBuilder.setPrettyPrinting();
+		
+		gsonBuilder.registerTypeAdapter(LocalDateAdapter.class, new LocalDateAdapter());
+		gsonBuilder.registerTypeAdapter(CategoriaAdapter.class, new CategoriaAdapter());
 		
 		Gson gson = gsonBuilder.create();
 		

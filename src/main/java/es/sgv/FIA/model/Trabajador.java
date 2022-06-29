@@ -39,6 +39,7 @@ public class Trabajador {
 	@OneToOne(fetch = FetchType.EAGER)
 	private Escuderia escuderia;
 
+	// Sobreescribo el metodo toString para que no me de StackOverFlow al mostrar la escuderia, termino mostrando unicamente el id y el nombre y así no la tengo que excluir del tostring
 	@Override
 	public String toString() {
 		return "Trabajador [id=" + id + ", nombre=" + nombre + ", cargo=" + cargo + ", fechaNacimiento="
