@@ -9,8 +9,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import es.sgv.FIA.model.Categoria;
+import es.sgv.FIA.model.Escuderia;
 import es.sgv.FIA.model.Mundial;
 import es.sgv.FIA.model.Piloto;
+import es.sgv.FIA.model.Trabajador;
 import es.sgv.FIA.services.IEscuderiaService;
 import es.sgv.FIA.services.IPilotoService;
 import es.sgv.FIA.services.ITrabajadorService;
@@ -24,7 +26,6 @@ public class FormulaSpringConsoleApp implements CommandLineRunner{
 
 	public void run(String... args) throws Exception
 	{
-		System.out.println("estoy en la app 2");
 		
 		cargarDatos();
 		
@@ -32,6 +33,9 @@ public class FormulaSpringConsoleApp implements CommandLineRunner{
 	
 	private void cargarDatos() {
 		
+		// añado los pilotos
+		
+		//creo una lista y posteriormente los añado todos a la base de datos
 
 		Set<Piloto> pilotos = new HashSet<>();
 		
@@ -40,7 +44,6 @@ public class FormulaSpringConsoleApp implements CommandLineRunner{
 				.nombre("Fernando Alonso")
 				.dorsal(14)
 				.fechaNacimiento(LocalDate.of(1981, 7, 29))
-				
 				.mundial(Mundial.builder()
 						.id("FA14_2005")
 						.anno(2005)
@@ -51,6 +54,7 @@ public class FormulaSpringConsoleApp implements CommandLineRunner{
 						.anno(2006)
 						.categoria(Categoria.FORMULA1)
 						.build())
+				.urlImage("https://phantom-marca.unidadeditorial.es/5d3131b97c57cbd81a0f3c2612f17124/resize/1320/f/jpg/assets/multimedia/imagenes/2022/04/08/16494033688026.jpg")
 				.build()
 				);
 		
@@ -59,43 +63,131 @@ public class FormulaSpringConsoleApp implements CommandLineRunner{
 				.nombre("Lewis Hamilton")
 				.dorsal(44)
 				.fechaNacimiento(LocalDate.of(1985, 1, 7))
-				//TODO
-				//dhkjshdkjdshkjhsdjkhkf
 				.mundial(Mundial.builder()
 						.id("LH44_2008")
 						.anno(2008)
 						.categoria(Categoria.FORMULA1)
 						.build())
 				.mundial(Mundial.builder()
+						.id("LH44_2014")
 						.anno(2014)
 						.categoria(Categoria.FORMULA1)
 						.build())
 				.mundial(Mundial.builder()
+						.id("LH44_2015")
 						.anno(2015)
 						.categoria(Categoria.FORMULA1)
 						.build())
 				.mundial(Mundial.builder()
+						.id("LH44_2017")
 						.anno(2017)
 						.categoria(Categoria.FORMULA1)
 						.build())
 				.mundial(Mundial.builder()
+						.id("LH44_2018")
 						.anno(2018)
 						.categoria(Categoria.FORMULA1)
 						.build())
 				.mundial(Mundial.builder()
+						.id("LH44_2019")
 						.anno(2019)
 						.categoria(Categoria.FORMULA1)
 						.build())
 				.mundial(Mundial.builder()
+						.id("LH44_2020")
 						.anno(2020)
 						.categoria(Categoria.FORMULA1)
 						.build())
+				.urlImage("https://citas.in/media/authors/lewis-hamilton.jpeg")
 				.build()
 				);
 		
-		pilotos.forEach(System.out::println);
+		pilotos.add(Piloto.builder()
+				.id("CS55")
+				.nombre("Carlos Sainz")
+				.dorsal(55)
+				.fechaNacimiento(LocalDate.of(1994,9 , 1))
+				.urlImage("https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Formel12021-SchlossGabelhofen%2815%29.jpg/1200px-Formel12021-SchlossGabelhofen%2815%29.jpg")
+				.build()
+				);
 		
-		//pilotoServicio.addAllPilotos(pilotos);
+		pilotos.add(Piloto.builder()
+				.id("CL16")
+				.nombre("Charles Leclerc")
+				.dorsal(16)
+				.fechaNacimiento(LocalDate.of(1997, 10 , 16))
+				.urlImage("https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Charles-Leclerc.jpg/640px-Charles-Leclerc.jpg")
+				.build()
+				);
+		
+		pilotos.add(Piloto.builder()
+				.id("MS47")
+				.nombre("Mick Schumacher")
+				.dorsal(47)
+				.fechaNacimiento(LocalDate.of(1999, 3 , 22))
+				.urlImage("https://static.motor.es/f1/fichas/contenido/mick-schumacher/mick-schumacher2021_1617622323.jpg")
+				.build()
+				);
+		
+		pilotos.add(Piloto.builder()
+				.id("AG99")
+				.nombre("Antonio Giovinazzi")
+				.dorsal(99)
+				.fechaNacimiento(LocalDate.of(1993, 12 , 14))
+				.urlImage("https://soymotor.com/sites/default/files/styles/small/public/imagenes/piloto/antonio-giovinazzi-2021-soymotor.png")
+				.build()
+				);
+		
+		/*
+		pilotos.add(Piloto.builder()
+				.id("")
+				.nombre("")
+				.dorsal()
+				.fechaNacimiento(LocalDate.of(, , ))
+				
+				.mundial(Mundial.builder()
+						.id("ID_year")
+						.anno()
+						.categoria(Categoria.FORMULA1)
+						.build())
+				.urlImage("")
+				.build()
+				);
+		*/
+		
+		
+		pilotoServicio.addAllPilotos(pilotos);
+				
+		//pilotoServicio.findAllPilotos().forEach(System.out::println);
+		
+		// creo las escuderias con sus trabajadores dentro y posteriormente le añado a cada una sus pilotos
+		
+		Set<Escuderia> escuderias = new HashSet<>();
+		
+		escuderias.add(Escuderia.builder()
+				.id("SF_F1")
+				.nombre("Scuderia Ferrari")
+				.categoria(Categoria.FORMULA1)
+				.pilotoOficial(pilotos.stream().filter(p -> p.getNombre().equals("Charles Leclerc")).findFirst().get())
+				.pilotoSecundario(pilotos.stream().filter(p -> p.getNombre().equals("Carlos Sainz")).findFirst().get())
+				.pilotoProbador(pilotos.stream().filter(p -> p.getNombre().equals("Mick Schumacher")).findFirst().get())
+				.pilotoProbador(pilotos.stream().filter(p -> p.getId().equals("AG99")).findFirst().get())
+				.trabajador(Trabajador.builder()
+						.id("t1_SF_F1")
+						.nombre("Juanito Derrapes")
+						.cargo("Mecanico ruedas")
+						.fechaNacimiento(LocalDate.of(1985, 12, 3))
+						.build())
+				.build());
+		
+		escuderias.stream().filter(s -> s.getId().equals("SF_F1")).findFirst().get()
+		.getTrabajadores().stream().filter(t -> t.getId().equals("t1_SF_F1")).findFirst().get().setEscuderia(
+				escuderias.stream().filter(s -> s.getId().equals("SF_F1")).findFirst().get());
+		
+		escuderiaServicio.saveAllEscuderias(escuderias);
+		
+		escuderiaServicio.findAllEscuderias().forEach(System.out::println);
+		
 		
 		
 		

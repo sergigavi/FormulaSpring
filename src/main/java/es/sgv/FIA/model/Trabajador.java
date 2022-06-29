@@ -13,6 +13,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
@@ -34,7 +35,16 @@ public class Trabajador {
 	
 	private LocalDate fechaNacimiento;
 	
-	@OneToOne(fetch = FetchType.EAGER) // esto no se si tengo que ponerlo
+	//@ToString.Exclude
+	@OneToOne(fetch = FetchType.EAGER)
 	private Escuderia escuderia;
+
+	@Override
+	public String toString() {
+		return "Trabajador [id=" + id + ", nombre=" + nombre + ", cargo=" + cargo + ", fechaNacimiento="
+				+ fechaNacimiento + ", escuderia=" + escuderia.getId() + "/" + escuderia.getNombre() + "]";
+	}
+	
+	
 
 }

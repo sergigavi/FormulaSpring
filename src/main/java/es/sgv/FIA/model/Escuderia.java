@@ -42,12 +42,12 @@ public class Escuderia { //si una escuderia está en f1 y f2, estará dos veces,
 	@OneToOne
 	private Piloto pilotoSecundario;
 	
-	@Singular
+	@Singular(value = "pilotoProbador")
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idEscuderia")
 	private Set<Piloto> pilotosProbadores;
 	
-	@Singular
+	@Singular(value = "trabajador")
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "idEscuderia")
 	private Set<Trabajador> trabajadores;

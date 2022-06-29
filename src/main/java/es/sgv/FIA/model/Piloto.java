@@ -30,7 +30,7 @@ public class Piloto {
 	@NonNull
 	@Id
 	@EqualsAndHashCode.Include
-	private String id; //FA14 LH44
+	private String id;
 	
 	private String nombre;
 	
@@ -41,7 +41,9 @@ public class Piloto {
 	@Singular(value = "mundial")
 	@OneToMany(cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
 	@JoinColumn(name = "idPiloto")
-	private Set<Mundial> mundiales; //año categoria
+	private Set<Mundial> mundiales;
+	
+	private String urlImage;
 	
 	
 	/*

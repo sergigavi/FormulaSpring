@@ -16,5 +16,7 @@ public interface IEscuderiaService {
 	
 	public Escuderia deleteEscuderiaById(String id);
 	
+	public boolean saveAllEscuderias(Iterable<Escuderia> escuderias);
+	
 }
 

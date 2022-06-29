@@ -15,8 +15,17 @@ public class PilotoServiceImpl implements IPilotoService {
 
 	@Override
 	public boolean annadirPiloto(Piloto piloto) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean exito = false;
+		
+		try {
+			pilotoDAO.save(piloto);
+			exito = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		return exito;
 	}
 
 	@Override
@@ -33,26 +42,30 @@ public class PilotoServiceImpl implements IPilotoService {
 
 	@Override
 	public Iterable<Piloto> findAllPilotos() {
-		// TODO Auto-generated method stub
-		return null;
+		return pilotoDAO.findAll();
 	}
 
 	@Override
 	public Optional<Piloto> findPilotoById(String idPiloto) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return pilotoDAO.findById(idPiloto);
 	}
 
 	@Override
 	public boolean existsByIdPiloto(String id) {
-		// TODO Auto-generated method stub
-		return false;
+		return pilotoDAO.existsById(id);
 	}
 
 	@Override
 	public Piloto deletePilotoById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Piloto p = Piloto.builder().build();
+		
+		if (pilotoDAO.existsById(id)) {
+			p = pilotoDAO.findById(id).get();
+			pilotoDAO.deleteById(id);
+		}
+		
+		return p;
 	}
 
 	@Override
