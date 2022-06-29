@@ -7,6 +7,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.google.gson.annotations.Expose;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

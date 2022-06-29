@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,7 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import es.sgv.FIA.model.Categoria;
 import es.sgv.FIA.model.Escuderia;
 
 public class FormulaJSON {
@@ -31,7 +33,6 @@ public class FormulaJSON {
 		Gson gson = gsonBuilder.create();
 		
 		TypeToken<Set<Escuderia>> listaEscuderias = new TypeToken<Set<Escuderia>>(){};
-
 		
 		try {
 			
@@ -52,16 +53,16 @@ public class FormulaJSON {
 		
 		gsonBuilder.setPrettyPrinting();
 		
-		gsonBuilder.registerTypeAdapter(LocalDateAdapter.class, new LocalDateAdapter());
-		gsonBuilder.registerTypeAdapter(CategoriaAdapter.class, new CategoriaAdapter());
-		
+		gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateAdapter());
+		gsonBuilder.registerTypeAdapter(Categoria.class, new CategoriaAdapter());
+				
 		Gson gson = gsonBuilder.create();
 		
 		try {
 			Writer writer = new FileWriter(new File("EscuderiasFormulaSpring.json"));
 			
-			//writer.write(gson.toJson(escuderias));
-			System.out.println(gson.toJson(escuderias));
+			writer.write(gson.toJson(escuderias));
+
 			writer.flush();
 			writer.close();
 			
@@ -69,6 +70,7 @@ public class FormulaJSON {
 			
 		} catch (IOException e) {
 			e.printStackTrace();
+			System.err.println("Error escribiendo el fichero JSON");
 		}
 		
 		return exito;

@@ -2,6 +2,10 @@ package es.sgv.utilS;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
+
+import es.sgv.FIA.model.Escuderia;
 
 public class UtilS {
 	
@@ -22,4 +26,16 @@ public class UtilS {
 		return entrada;
 	}
 
+	public static Set<Object> deArrayASet(Object[] array)
+	{
+		Set<Object> miSet = new HashSet<>();
+		
+		for (int i = 0; i < array.length; i++) {
+			miSet.add(array[i]);
+		}
+		
+		return miSet;
+	}
+
+	
 }

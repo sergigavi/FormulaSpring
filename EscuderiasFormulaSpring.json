@@ -1,0 +1,49 @@
+[
+  {
+    "id": "SF_F1",
+    "nombre": "Scuderia Ferrari",
+    "categoria": "FORMULA1",
+    "pilotoOficial": {
+      "id": "CL16",
+      "nombre": "Charles Leclerc",
+      "dorsal": 16,
+      "fechaNacimiento": "1997-10-16",
+      "mundiales": [],
+      "urlImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Charles-Leclerc.jpg/640px-Charles-Leclerc.jpg"
+    },
+    "pilotoSecundario": {
+      "id": "CS55",
+      "nombre": "Carlos Sainz",
+      "dorsal": 55,
+      "fechaNacimiento": "1994-09-01",
+      "mundiales": [],
+      "urlImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Formel12021-SchlossGabelhofen%2815%29.jpg/1200px-Formel12021-SchlossGabelhofen%2815%29.jpg"
+    },
+    "pilotosProbadores": [
+      {
+        "id": "MS47",
+        "nombre": "Mick Schumacher",
+        "dorsal": 47,
+        "fechaNacimiento": "1999-03-22",
+        "mundiales": [],
+        "urlImage": "https://static.motor.es/f1/fichas/contenido/mick-schumacher/mick-schumacher2021_1617622323.jpg"
+      },
+      {
+        "id": "AG99",
+        "nombre": "Antonio Giovinazzi",
+        "dorsal": 99,
+        "fechaNacimiento": "1993-12-14",
+        "mundiales": [],
+        "urlImage": "https://soymotor.com/sites/default/files/styles/small/public/imagenes/piloto/antonio-giovinazzi-2021-soymotor.png"
+      }
+    ],
+    "trabajadores": [
+      {
+        "id": "t1_SF_F1",
+        "nombre": "Juanito Derrapes",
+        "cargo": "Mecanico ruedas",
+        "fechaNacimiento": "1985-12-03"
+      }
+    ]
+  }
+]
