@@ -30,7 +30,7 @@ public class FormulaSpringConsoleApp implements CommandLineRunner{
 	{
 		
 		cargarDatos();
-		
+				
 		Set<Escuderia> escuderias = new HashSet<Escuderia>();
 		escuderiaServicio.findAllEscuderias().forEach(e -> escuderias.add(e));
 
@@ -165,13 +165,92 @@ public class FormulaSpringConsoleApp implements CommandLineRunner{
 				.build()
 				);
 		
+		pilotos.add(Piloto.builder()
+				.id("SV05")
+				.nombre("Sebastian Vettel")
+				.dorsal(5)
+				.fechaNacimiento(LocalDate.of(1987, 7, 3))
+				
+				.mundial(Mundial.builder()
+						.id("SV05_2010")
+						.anno(2010)
+						.categoria(Categoria.FORMULA1)
+						.build())
+				.mundial(Mundial.builder()
+						.id("SV05_2011")
+						.anno(2011)
+						.categoria(Categoria.FORMULA1)
+						.build())
+				.mundial(Mundial.builder()
+						.id("SV05_2012")
+						.anno(2012)
+						.categoria(Categoria.FORMULA1)
+						.build())
+				.mundial(Mundial.builder()
+						.id("SV05_2013")
+						.anno(2013)
+						.categoria(Categoria.FORMULA1)
+						.build())
+				.urlImage("https://cdn-1.motorsport.com/images/mgl/2jXZrAb6/s8/sebastian-vettel-aston-martin-1.jpg")
+				.build()
+				);
+		
+		pilotos.add(Piloto.builder()
+				.id("EO33")
+				.nombre("Esteban Ocon")
+				.dorsal(33)
+				.fechaNacimiento(LocalDate.of(1996 , 10, 17))
+				.urlImage("https://cdn-2.motorsport.com/images/mgl/6zQ7ev7Y/s8/esteban-ocon-alpine-1.jpg")
+				.build()
+				);
+		
+		pilotos.add(Piloto.builder()
+				.id("MV01")
+				.nombre("Max Verstappen")
+				.dorsal(1)
+				.fechaNacimiento(LocalDate.of(1997, 9, 30))
+				.mundial(Mundial.builder()
+						.id("MV01_2021")
+						.anno(2021)
+						.categoria(Categoria.FORMULA1)
+						.build())
+				.urlImage("https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2022/5/5/esxtfazwc5k0xntwv20i/max-verstappen-profile-pic")
+				.build()
+				);
+		
+		pilotos.add(Piloto.builder()
+				.id("SP11")
+				.nombre("Sergio Perez")
+				.dorsal(11)
+				.fechaNacimiento(LocalDate.of(1990, 1, 26))
+				.urlImage("https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2022/5/10/hop9yksneuaqtv4coxri/sergio-perez-portrait-imola-gp-f1-2022")
+				.build()
+				);		
+		
+		pilotos.add(Piloto.builder()
+				.id("AA23")
+				.nombre("Alex Albon")
+				.dorsal(23)
+				.fechaNacimiento(LocalDate.of(1996, 3, 23))
+				.urlImage("https://www.formula1.com/content/fom-website/en/drivers/alexander-albon/_jcr_content/image.img.320.medium.jpg")
+				.build()
+				);
+		
+		pilotos.add(Piloto.builder()
+				.id("GR63")
+				.nombre("George Russell")
+				.dorsal(63)
+				.fechaNacimiento(LocalDate.of(1998, 2, 15))
+				.urlImage("https://static.motor.es/fotos-noticias/2021/07/george-russell-piloto-mercedes-f1-2022-202179569-1626110071_4.jpg")
+				.build()
+				);
+		
 		/*
 		pilotos.add(Piloto.builder()
 				.id("")
 				.nombre("")
 				.dorsal()
 				.fechaNacimiento(LocalDate.of(, , ))
-				
 				.mundial(Mundial.builder()
 						.id("ID_year")
 						.anno()
@@ -184,9 +263,7 @@ public class FormulaSpringConsoleApp implements CommandLineRunner{
 		
 		
 		pilotoServicio.addAllPilotos(pilotos);
-				
-		//pilotoServicio.findAllPilotos().forEach(System.out::println);
-		
+						
 		// creo las escuderias con sus trabajadores dentro y posteriormente le añado a cada una sus pilotos
 		
 		Set<Escuderia> escuderias = new HashSet<>();
@@ -207,11 +284,37 @@ public class FormulaSpringConsoleApp implements CommandLineRunner{
 						.build())
 				.build());
 		
-		//con esto le añado a mis trabajadores la escuderia en la que están (seguro que hay una forma mejor de hacerlo con el this o algo)
-		escuderias.stream().filter(s -> s.getId().equals("SF_F1")).findFirst().get()
-		.getTrabajadores().stream().filter(t -> t.getId().equals("t1_SF_F1")).findFirst().get().setEscuderia(
-				escuderias.stream().filter(s -> s.getId().equals("SF_F1")).findFirst().get());
+		escuderias.add(Escuderia.builder()
+				.id("RB_F1")
+				.nombre("Oracle Red Bull Racing")
+				.categoria(Categoria.FORMULA1)
+				.pilotoOficial(pilotos.stream().filter(p -> p.getId().equals("MV01")).findFirst().get())
+				.pilotoSecundario(pilotos.stream().filter(p -> p.getId().equals("SP11")).findFirst().get())
+				.pilotoProbador(pilotos.stream().filter(p -> p.getId().equals("AA23")).findFirst().get())
+				.trabajador(Trabajador.builder()
+						.id("t1_RB_F1")
+						.nombre("Manolito Trompos")
+						.cargo("Ingeniero aerodinamico")
+						.fechaNacimiento(LocalDate.of(1983, 10, 3))
+						.build())
+				.build());
 		
+		escuderias.add(Escuderia.builder()
+				.id("MP_F1")
+				.nombre("Mercedes AMG Petronas")
+				.categoria(Categoria.FORMULA1)
+				.pilotoOficial(pilotos.stream().filter(p -> p.getId().equals("LH44")).findFirst().get())
+				.pilotoSecundario(pilotos.stream().filter(p -> p.getId().equals("GR63")).findFirst().get())
+				.trabajador(Trabajador.builder()
+						.id("t1_MP_F1")
+						.nombre("Toto Wolff")
+						.cargo("Director ejecutivo")
+						.fechaNacimiento(LocalDate.of(1972, 1, 12))
+						.build())
+				.build());
+		
+		annadirSuEscuderiaACadaTrabajador(escuderias);		
+				
 		escuderiaServicio.saveAllEscuderias(escuderias);		
 		
 		//TODO: Continuar metiendo datos, creando pilotos y escuderias, ademas de incluir más trabajadores
@@ -219,4 +322,21 @@ public class FormulaSpringConsoleApp implements CommandLineRunner{
 		
 		
 	}
+
+	private void annadirSuEscuderiaACadaTrabajador(Set<Escuderia> escuderias) {
+		
+		//con esto le añado los trabajadores de cada escuderia la escuderia en la que están, ya que es bidireccional (seguro que hay una forma mejor de hacerlo con el this o algo)
+		//las escuderias guardan a los trabajadores y los trabajadores guardan su escuderia
+		
+		escuderias.stream().filter(s -> s.getId().equals("SF_F1")).findFirst().get()
+		.getTrabajadores().stream().forEach(t -> t.setEscuderia(escuderias.stream().filter(s -> s.getId().equals("SF_F1")).findFirst().get()));
+		
+		escuderias.stream().filter(s -> s.getId().equals("RB_F1")).findFirst().get()
+		.getTrabajadores().stream().forEach(t -> t.setEscuderia(escuderias.stream().filter(s -> s.getId().equals("RB_F1")).findFirst().get()));
+		
+		escuderias.stream().filter(s -> s.getId().equals("MP_F1")).findFirst().get()
+		.getTrabajadores().stream().forEach(t -> t.setEscuderia(escuderias.stream().filter(s -> s.getId().equals("MP_F1")).findFirst().get()));
+	}
+	
+	
 }

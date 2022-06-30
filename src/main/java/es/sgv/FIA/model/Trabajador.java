@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gson.annotations.Expose;
 
 import lombok.AllArgsConstructor;
@@ -38,6 +39,7 @@ public class Trabajador {
 	private LocalDate fechaNacimiento;
 	
 	//@ToString.Exclude
+	@JsonIgnore //asi no me lo pinta en el json y no tengo stackoverflow ya que cada escuderia me pinta ya los trabajadores
 	@OneToOne(fetch = FetchType.EAGER)
 	private Escuderia escuderia;
 
@@ -47,6 +49,8 @@ public class Trabajador {
 		return "Trabajador [id=" + id + ", nombre=" + nombre + ", cargo=" + cargo + ", fechaNacimiento="
 				+ fechaNacimiento + ", escuderia=" + escuderia.getId() + "/" + escuderia.getNombre() + "]";
 	}
+	
+	//hago el fromString para que a la hora de pasarle el adapter me meta correctamente la escuderia
 	
 	
 

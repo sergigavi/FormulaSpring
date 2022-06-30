@@ -45,5 +45,116 @@
         "fechaNacimiento": "1985-12-03"
       }
     ]
+  },
+  {
+    "id": "MP_F1",
+    "nombre": "Mercedes AMG Petronas",
+    "categoria": "FORMULA1",
+    "pilotoOficial": {
+      "id": "LH44",
+      "nombre": "Lewis Hamilton",
+      "dorsal": 44,
+      "fechaNacimiento": "1985-01-07",
+      "mundiales": [
+        {
+          "id": "LH44_2008",
+          "anno": 2008,
+          "categoria": "FORMULA1"
+        },
+        {
+          "id": "LH44_2019",
+          "anno": 2019,
+          "categoria": "FORMULA1"
+        },
+        {
+          "id": "LH44_2018",
+          "anno": 2018,
+          "categoria": "FORMULA1"
+        },
+        {
+          "id": "LH44_2017",
+          "anno": 2017,
+          "categoria": "FORMULA1"
+        },
+        {
+          "id": "LH44_2015",
+          "anno": 2015,
+          "categoria": "FORMULA1"
+        },
+        {
+          "id": "LH44_2014",
+          "anno": 2014,
+          "categoria": "FORMULA1"
+        },
+        {
+          "id": "LH44_2020",
+          "anno": 2020,
+          "categoria": "FORMULA1"
+        }
+      ],
+      "urlImage": "https://citas.in/media/authors/lewis-hamilton.jpeg"
+    },
+    "pilotoSecundario": {
+      "id": "GR63",
+      "nombre": "George Russell",
+      "dorsal": 63,
+      "fechaNacimiento": "1998-02-15",
+      "mundiales": [],
+      "urlImage": "https://static.motor.es/fotos-noticias/2021/07/george-russell-piloto-mercedes-f1-2022-202179569-1626110071_4.jpg"
+    },
+    "pilotosProbadores": [],
+    "trabajadores": [
+      {
+        "id": "t1_MP_F1",
+        "nombre": "Toto Wolff",
+        "cargo": "Director ejecutivo",
+        "fechaNacimiento": "1972-01-12"
+      }
+    ]
+  },
+  {
+    "id": "RB_F1",
+    "nombre": "Oracle Red Bull Racing",
+    "categoria": "FORMULA1",
+    "pilotoOficial": {
+      "id": "MV01",
+      "nombre": "Max Verstappen",
+      "dorsal": 1,
+      "fechaNacimiento": "1997-09-30",
+      "mundiales": [
+        {
+          "id": "MV01_2021",
+          "anno": 2021,
+          "categoria": "FORMULA1"
+        }
+      ],
+      "urlImage": "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2022/5/5/esxtfazwc5k0xntwv20i/max-verstappen-profile-pic"
+    },
+    "pilotoSecundario": {
+      "id": "SP11",
+      "nombre": "Sergio Perez",
+      "dorsal": 11,
+      "fechaNacimiento": "1990-01-26",
+      "mundiales": [],
+      "urlImage": "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2022/5/10/hop9yksneuaqtv4coxri/sergio-perez-portrait-imola-gp-f1-2022"
+    },
+    "pilotosProbadores": [
+      {
+        "id": "AA23",
+        "nombre": "Alex Albon",
+        "dorsal": 23,
+        "fechaNacimiento": "1996-03-23",
+        "mundiales": [],
+        "urlImage": "https://www.formula1.com/content/fom-website/en/drivers/alexander-albon/_jcr_content/image.img.320.medium.jpg"
+      }
+    ],
+    "trabajadores": [
+      {
+        "id": "t1_RB_F1",
+        "nombre": "Manolito Trompos",
+        "cargo": "Ingeniero aerodinamico",
+        "fechaNacimiento": "1983-10-03"
+      }
+    ]
   }
 ]

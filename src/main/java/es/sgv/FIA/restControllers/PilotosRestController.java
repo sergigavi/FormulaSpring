@@ -14,7 +14,7 @@ import es.sgv.FIA.services.IPilotoService;
 @RequestMapping("/FormulaSpring/pilotos")
 public class PilotosRestController {
 
-	@Autowired IPilotoService pilotoServicio;
+	@Autowired private IPilotoService pilotoServicio;
 	
 	@GetMapping("/dametodos")
 	public ResponseEntity<Iterable<Piloto>> obtenerTodosLosPilotos()
