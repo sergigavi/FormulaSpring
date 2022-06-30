@@ -5,8 +5,6 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
-import es.sgv.FIA.model.Escuderia;
-
 public class UtilS {
 	
 	public static String leerTeclado(String msg) {
@@ -15,7 +13,9 @@ public class UtilS {
 		
 		String entrada = "";
 		
-		try (BufferedReader bf =  new BufferedReader(new InputStreamReader(System.in))) {
+		try {
+			
+			BufferedReader bf =  new BufferedReader(new InputStreamReader(System.in));
 			
 			entrada = bf.readLine();
 			

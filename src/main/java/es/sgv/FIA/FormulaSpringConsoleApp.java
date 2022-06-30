@@ -19,7 +19,7 @@ import es.sgv.FIA.services.ITrabajadorService;
 import es.sgv.FIAJSON.FormulaJSON;
 import es.sgv.utilS.UtilS;
 
-@Component //esto no funciona no se por que
+//@Component
 public class FormulaSpringConsoleApp implements CommandLineRunner{
 	
 	@Autowired private IPilotoService pilotoServicio;
