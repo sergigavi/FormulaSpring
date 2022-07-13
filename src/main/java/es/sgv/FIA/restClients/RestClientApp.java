@@ -15,7 +15,7 @@ import es.sgv.utilS.UtilS;
 public class RestClientApp {
 	
 	public static final String URL = "http://127.0.0.1:8080/";
-	public static final int numOpciones = 6;
+	public static final int numOpciones = 7;
 
 	public static void main(String[] args) {
 		
@@ -37,6 +37,7 @@ public class RestClientApp {
 					4. Obtener todos los pilotos
 					5. Obtener todos los trabajadores
 					6. Guardar Escuderias en fichero JSON
+					7. Insertar trabajador en escuderia
 					""");
 			
 			res = UtilS.leerTeclado("Opcion -> ");
@@ -105,7 +106,15 @@ public class RestClientApp {
 			else {
 				System.err.println("Error escribiendo el archivo");
 			}
+			break;
 			
+		case "7":
+			if (insertarTrabajadorEnEscuderia()) {
+				System.out.println(" insertado correctamente");
+				}
+			else{
+				System.err.println(" no se ha podido insertar.");
+			}
 			break;
 
 		default:
@@ -130,6 +139,33 @@ public class RestClientApp {
 			misTrabajadores.add(c);
 		
 		return misTrabajadores;
+	}
+	
+	private static boolean insertarTrabajadorEnEscuderia() {
+
+		boolean exito = false;
+		
+		try {
+			
+			Trabajador t = UtilS.leerTrabajador();
+			String idEscuderia = UtilS.leerTeclado("ID de la escuderia donde se va a insertar el trabajador: ");
+			
+			String miURL = URL + "FormulaSpring/escuderias/insertarTrabajadorEnEscuderia";
+			
+			RestTemplate template = new RestTemplate();
+			
+			ResponseEntity<Trabajador> response = template.getForEntity(miURL, Trabajador.class, t, idEscuderia);
+			
+			Trabajador trabajadorInsertado = response.getBody();
+			
+			System.out.println(trabajadorInsertado);
+			
+			exito = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return exito;
 	}
 
 	private static void cargarDatos() {

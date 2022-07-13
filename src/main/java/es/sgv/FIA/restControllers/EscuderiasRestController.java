@@ -60,6 +60,7 @@ public class EscuderiasRestController {
 		return res;
 	}
 	
+	//TODO
 	@PostMapping("/insertarTrabajadorEnEscuderia")
 	public ResponseEntity<Trabajador> insertarTrabajadorEnEscuderia(@RequestBody Trabajador t, @RequestParam String idEscuderia) {
 

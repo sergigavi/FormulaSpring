@@ -42,13 +42,36 @@ public class UtilS {
 	
 	public static Trabajador leerTrabajador()
 	{
-		Trabajador t = Trabajador.builder()
-				.id(leerTeclado("ID: "))
-				.nombre(leerTeclado("NOMBRE: "))
-				.cargo(leerTeclado("CARGO: "))
-				.fechaNacimiento(LocalDate.parse(leerTeclado("FECHA NACIMIENTO YYYY/MM/DD: ")))
-				//.escuderia(leerTeclado("ESCUDERIA: ")) // Aqui podria sacar el dao y meterle la escuderia por id
-				.build();
+		Trabajador t = Trabajador.builder().id("").build();
+		
+		/*
+		try {
+			t = Trabajador.builder()
+					.id(leerTeclado("ID: "))
+					.nombre(leerTeclado("NOMBRE: "))
+					.cargo(leerTeclado("CARGO: "))
+					.fechaNacimiento(LocalDate.parse(leerTeclado("FECHA NACIMIENTO YYYY/MM/DD: ")))
+					//.escuderia(leerTeclado("ESCUDERIA: ")) // Aqui podria sacar el dao y meterle la escuderia por id
+					.build();
+			
+			
+		} catch (Exception e) {
+			t.setFechaNacimiento(LocalDate.now().minusYears(18));
+			e.printStackTrace();
+		}*/
+		
+		try {
+			
+			t.setId(leerTeclado("ID: "));
+			t.setNombre(leerTeclado("NOMBRE: "));
+			t.setCargo(leerTeclado("CARGO: "));
+			t.setFechaNacimiento(LocalDate.parse(leerTeclado("FECHA NACIMIENTO YYYY/MM/DD: ")));
+			//.escuderia(leerTeclado("ESCUDERIA: ")) // Aqui podria sacar el dao y meterle la escuderia por id			
+			
+		} catch (Exception e) {
+			t.setFechaNacimiento(LocalDate.now().minusYears(18));
+			e.printStackTrace();
+		}
 				
 		return t;
 	}
