@@ -65,7 +65,7 @@ public class UtilS {
 			t.setId(leerTeclado("ID: "));
 			t.setNombre(leerTeclado("NOMBRE: "));
 			t.setCargo(leerTeclado("CARGO: "));
-			t.setFechaNacimiento(LocalDate.parse(leerTeclado("FECHA NACIMIENTO YYYY/MM/DD: ")));
+			t.setFechaNacimiento(LocalDate.parse(leerTeclado("FECHA NACIMIENTO YYYY-MM-DD: ")));
 			//.escuderia(leerTeclado("ESCUDERIA: ")) // Aqui podria sacar el dao y meterle la escuderia por id			
 			
 		} catch (Exception e) {
