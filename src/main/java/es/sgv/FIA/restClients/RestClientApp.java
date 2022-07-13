@@ -9,11 +9,13 @@ import org.springframework.web.client.RestTemplate;
 import es.sgv.FIA.model.Escuderia;
 import es.sgv.FIA.model.Piloto;
 import es.sgv.FIA.model.Trabajador;
+import es.sgv.FIAJSON.FormulaJSON;
 import es.sgv.utilS.UtilS;
 
 public class RestClientApp {
 	
 	public static final String URL = "http://127.0.0.1:8080/";
+	public static final int numOpciones = 6;
 
 	public static void main(String[] args) {
 		
@@ -34,6 +36,7 @@ public class RestClientApp {
 					3. Obtener todas las escuderias
 					4. Obtener todos los pilotos
 					5. Obtener todos los trabajadores
+					6. Guardar Escuderias en fichero JSON
 					""");
 			
 			res = UtilS.leerTeclado("Opcion -> ");
@@ -64,7 +67,7 @@ public class RestClientApp {
 		
 		try {
 			
-			if (Integer.parseInt(res) < 1 || Integer.parseInt(res) > 5)
+			if (Integer.parseInt(res) < 1 || Integer.parseInt(res) > numOpciones)
 			{
 				System.err.println("Opcion erronea");
 			}
@@ -93,6 +96,17 @@ public class RestClientApp {
 		case "5":
 			obtenerTrabajadores().forEach(System.out::println);
 			break;
+			
+		case "6":
+			if(FormulaJSON.escribirJSON(obtenerEscuderias()))
+			{
+				System.out.println("Se ha escrito correctamente el fichero JSON");
+			}
+			else {
+				System.err.println("Error escribiendo el archivo");
+			}
+			
+			break;
 
 		default:
 			break;
@@ -100,7 +114,7 @@ public class RestClientApp {
 		
 	}
 
-	private static Iterable<Trabajador> obtenerTrabajadores() {
+	private static Set<Trabajador> obtenerTrabajadores() {
 
 		Set<Trabajador> misTrabajadores = new HashSet<Trabajador>();
 		

@@ -2,8 +2,11 @@ package es.sgv.utilS;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+
+import es.sgv.FIA.model.Trabajador;
 
 public class UtilS {
 	
@@ -35,6 +38,19 @@ public class UtilS {
 		}
 		
 		return miSet;
+	}
+	
+	public static Trabajador leerTrabajador()
+	{
+		Trabajador t = Trabajador.builder()
+				.id(leerTeclado("ID: "))
+				.nombre(leerTeclado("NOMBRE: "))
+				.cargo(leerTeclado("CARGO: "))
+				.fechaNacimiento(LocalDate.parse(leerTeclado("FECHA NACIMIENTO YYYY/MM/DD: ")))
+				//.escuderia(leerTeclado("ESCUDERIA: ")) // Aqui podria sacar el dao y meterle la escuderia por id
+				.build();
+				
+		return t;
 	}
 
 	

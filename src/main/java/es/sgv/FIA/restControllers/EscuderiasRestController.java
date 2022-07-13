@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.sgv.FIA.model.Categoria;
@@ -26,16 +29,16 @@ public class EscuderiasRestController {
 
 	@Autowired
 	private IEscuderiaService escuderiaServicio;
-	
+
 	@Autowired
 	private IPilotoService pilotoServicio;
-	
+
 	@Autowired
 	private ITrabajadorService trabajadorServicio;
 
 	@GetMapping("/dametodas")
 	public ResponseEntity<Iterable<Escuderia>> obtenerTodasLasEscuderias() {
-		
+
 		ResponseEntity<Iterable<Escuderia>> res = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
 		Iterable<Escuderia> allEscuderias = escuderiaServicio.findAllEscuderias();
@@ -44,15 +47,27 @@ public class EscuderiasRestController {
 
 		return res;
 	}
-	
+
 	@GetMapping("/dameTrabajadores")
 	public ResponseEntity<Iterable<Trabajador>> obtenerTodosLosTrabajadores() {
-		
+
 		ResponseEntity<Iterable<Trabajador>> res = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
 		Iterable<Trabajador> allTrabajadores = trabajadorServicio.findAllTrabajadores();
 
 		res = new ResponseEntity<Iterable<Trabajador>>(allTrabajadores, HttpStatus.OK);
+
+		return res;
+	}
+	
+	@PostMapping("/insertarTrabajadorEnEscuderia")
+	public ResponseEntity<Trabajador> insertarTrabajadorEnEscuderia(@RequestBody Trabajador t, @RequestParam String idEscuderia) {
+
+		ResponseEntity<Trabajador> res = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+		trabajadorServicio.annadirTrabajadorEnEscuderia(t, idEscuderia);
+		
+		res = new ResponseEntity<Trabajador>(t, HttpStatus.OK);
 
 		return res;
 	}
@@ -206,6 +221,8 @@ public class EscuderiasRestController {
 		annadirSuEscuderiaACadaTrabajador(escuderias);
 
 		escuderiaServicio.saveAllEscuderias(escuderias);
+		
+		escuderiaServicio.findAllEscuderias().forEach(System.out::println);
 
 		// TODO: Continuar metiendo datos, creando pilotos y escuderias, ademas de
 		// incluir más trabajadores
@@ -228,6 +245,7 @@ public class EscuderiasRestController {
 
 		escuderias.stream().filter(s -> s.getId().equals("MP_F1")).findFirst().get().getTrabajadores().stream().forEach(
 				t -> t.setEscuderia(escuderias.stream().filter(s -> s.getId().equals("MP_F1")).findFirst().get()));
+
 	}
 
 }
