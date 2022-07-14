@@ -62,7 +62,7 @@ public class EscuderiasRestController {
 	
 	//TODO
 	@PostMapping("/insertarTrabajadorEnEscuderia")
-	public ResponseEntity<Trabajador> insertarTrabajadorEnEscuderia(@RequestBody Trabajador t, @RequestParam String idEscuderia) {
+	public ResponseEntity<Trabajador> insertarTrabajadorEnEscuderia(@RequestBody Trabajador t, @RequestParam String idEscuderia) { //esto es lo que tengo que arreglar
 
 		ResponseEntity<Trabajador> res = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 

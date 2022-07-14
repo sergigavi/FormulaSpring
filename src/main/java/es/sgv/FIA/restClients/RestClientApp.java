@@ -154,7 +154,7 @@ public class RestClientApp {
 			
 			RestTemplate template = new RestTemplate();
 			
-			ResponseEntity<Trabajador> response = template.getForEntity(miURL, Trabajador.class, t, idEscuderia);
+			ResponseEntity<Trabajador> response = template.getForEntity(miURL, Trabajador.class, t, idEscuderia); //TODO: tengo que ver como se pasan los parametros bien
 			
 			Trabajador trabajadorInsertado = response.getBody();
 			
