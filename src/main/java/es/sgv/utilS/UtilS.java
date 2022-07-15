@@ -42,23 +42,15 @@ public class UtilS {
 	
 	public static Trabajador leerTrabajador()
 	{
-		Trabajador t = Trabajador.builder().id("").build();
+		System.out.println("\r\n"
+				+ "  _                      _          _      _               _     _   _            _           _         _         \r\n"
+				+ " | |___ _  _ ___ _ _  __| |___   __| |__ _| |_ ___ ___  __| |___| | | |_ _ _ __ _| |__  __ _ (_)__ _ __| |___ _ _ \r\n"
+				+ " | / -_) || / -_) ' \\/ _` / _ \\ / _` / _` |  _/ _ (_-< / _` / -_) | |  _| '_/ _` | '_ \\/ _` || / _` / _` / _ \\ '_|\r\n"
+				+ " |_\\___|\\_, \\___|_||_\\__,_\\___/ \\__,_\\__,_|\\__\\___/__/ \\__,_\\___|_|  \\__|_| \\__,_|_.__/\\__,_|/ \\__,_\\__,_\\___/_|  \r\n"
+				+ "        |__/                                                                               |__/                   \r\n"
+				+ "");
 		
-		/*
-		try {
-			t = Trabajador.builder()
-					.id(leerTeclado("ID: "))
-					.nombre(leerTeclado("NOMBRE: "))
-					.cargo(leerTeclado("CARGO: "))
-					.fechaNacimiento(LocalDate.parse(leerTeclado("FECHA NACIMIENTO YYYY/MM/DD: ")))
-					//.escuderia(leerTeclado("ESCUDERIA: ")) // Aqui podria sacar el dao y meterle la escuderia por id
-					.build();
-			
-			
-		} catch (Exception e) {
-			t.setFechaNacimiento(LocalDate.now().minusYears(18));
-			e.printStackTrace();
-		}*/
+		Trabajador t = Trabajador.builder().id("").build();
 		
 		try {
 			

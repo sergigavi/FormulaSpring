@@ -43,6 +43,12 @@
         "nombre": "Juanito Derrapes",
         "cargo": "Mecanico ruedas",
         "fechaNacimiento": "1985-12-03"
+      },
+      {
+        "id": "t2_SF_F1",
+        "nombre": "Maria Ruiz",
+        "cargo": "Jefa la mas bonita",
+        "fechaNacimiento": "2000-10-04"
       }
     ]
   },

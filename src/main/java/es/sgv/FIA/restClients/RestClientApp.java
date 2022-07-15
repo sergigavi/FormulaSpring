@@ -1,6 +1,8 @@
 package es.sgv.FIA.restClients;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.http.ResponseEntity;
@@ -148,13 +150,29 @@ public class RestClientApp {
 		try {
 			
 			Trabajador t = UtilS.leerTrabajador();
+			
+			System.err.println("LISTA DE ESCUDERIAS DISPONIBLES: ");
+			obtenerEscuderias().stream()
+			.map(e -> "ID: " + e.getId() + " / NOMBRE: " + e.getNombre())
+			.forEach(System.out::println);
+								
 			String idEscuderia = UtilS.leerTeclado("ID de la escuderia donde se va a insertar el trabajador: ");
 			
-			String miURL = URL + "FormulaSpring/escuderias/insertarTrabajadorEnEscuderia";
+			if(!(obtenerEscuderias().stream().anyMatch(e -> e.getId().equals(idEscuderia))))
+			{
+				System.err.println("ID de escuderia no valido \t Regresando al menú...");
+				throw new IllegalArgumentException();
+			}
+			
+			String miURL = URL + "FormulaSpring/escuderias/insertarTrabajadorEnEscuderia?idEscuderia={idEscuderia}";
 			
 			RestTemplate template = new RestTemplate();
 			
-			ResponseEntity<Trabajador> response = template.getForEntity(miURL, Trabajador.class, t, idEscuderia); //TODO: tengo que ver como se pasan los parametros bien
+			Map<String,Object> parametros = new HashMap<String,Object>();
+			
+			parametros.put("idEscuderia", idEscuderia);
+			
+			ResponseEntity<Trabajador> response = template.postForEntity(miURL, t, Trabajador.class, parametros);
 			
 			Trabajador trabajadorInsertado = response.getBody();
 			

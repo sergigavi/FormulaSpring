@@ -32,6 +32,9 @@ public class TrabajadorServiceImpl implements ITrabajadorService {
 				
 				Escuderia e = escuderiaDAO.findById(idEscuderia).get();
 				e.getTrabajadores().add(trabajador);
+				
+				escuderiaDAO.save(e);
+				
 				exito = true;
 				
 			} catch (Exception e) {
