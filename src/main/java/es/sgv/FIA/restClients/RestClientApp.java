@@ -8,7 +8,9 @@ import java.util.Set;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import es.sgv.FIA.lecturaDatos.LecturaFormula;
 import es.sgv.FIA.model.Escuderia;
+import es.sgv.FIA.model.Mundial;
 import es.sgv.FIA.model.Piloto;
 import es.sgv.FIA.model.Trabajador;
 import es.sgv.FIAJSON.FormulaJSON;
@@ -17,12 +19,11 @@ import es.sgv.utilS.UtilS;
 public class RestClientApp {
 	
 	public static final String URL = "http://127.0.0.1:8080/";
-	public static final int numOpciones = 7;
+	public static final int numOpciones = 9;
 
 	public static void main(String[] args) {
 		
 		mostrarMenu();
-		
 	
 	}
 	
@@ -40,6 +41,8 @@ public class RestClientApp {
 					5. Obtener todos los trabajadores
 					6. Guardar Escuderias en fichero JSON
 					7. Insertar trabajador en escuderia
+					8. Añadir piloto
+					9. Agregar mundial a piloto
 					""");
 			
 			res = UtilS.leerTeclado("Opcion -> ");
@@ -118,11 +121,89 @@ public class RestClientApp {
 				System.err.println(" no se ha podido insertar.");
 			}
 			break;
+			
+		case "8":
+			if (annadirPiloto()) {
+				System.out.println("Piloto insertado correctamente");
+			}
+			else {
+				System.err.println("Error añadiendo piloto");
+			}
+			break;
+			
+		case "9":
+			if(agregarMundialAPiloto())
+				System.out.println("Mundial insertado en piloto correctamente");
+			else
+				System.err.println("Error insertando mundial en piloto");
+			break;
 
 		default:
 			break;
 		}
 		
+	}
+
+	private static boolean agregarMundialAPiloto() {
+		
+		
+		boolean exito = false;
+		
+		try {
+			String idPiloto = UtilS.leerTeclado("ID PILOTO GANADOR: ");
+			
+			if(!(obtenerPilotos().stream().anyMatch(e -> e.getId().equals(idPiloto))))
+			{
+				System.err.println("ID de piloto no valido \t Regresando al menú...");
+				throw new IllegalArgumentException();
+			}
+			
+			Mundial mundial = LecturaFormula.leerMundial();
+											
+			String miURL = URL + "FormulaSpring/pilotos/agregarMundialAPiloto?idPiloto={idPiloto}";
+			
+			RestTemplate template = new RestTemplate();
+			
+			Map<String,Object> parametros = new HashMap<String,Object>();
+			
+			parametros.put("idPiloto", idPiloto);
+			
+			ResponseEntity<Piloto> response = template.postForEntity(miURL, mundial, Piloto.class, parametros);
+			
+			//Piloto pilotoInsertado = response.getBody();
+			
+			//System.out.println(pilotoInsertado);
+			
+			exito = true;
+			
+		} catch (Exception e) {
+			System.err.println("error restClientApp");
+			e.printStackTrace();
+		}
+		
+		return exito;
+	}
+
+	private static boolean annadirPiloto() {
+		
+		boolean exito = false;
+		
+		try {
+			String miURL = URL + "FormulaSpring/pilotos/insertar";
+			
+			RestTemplate template = new RestTemplate();
+			
+			Piloto piloto = LecturaFormula.LeerPiloto();
+			
+			ResponseEntity<Piloto> res = template.postForEntity(miURL, piloto, Piloto.class);
+			
+			System.out.println(res.getBody());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return exito;		
 	}
 
 	private static Set<Trabajador> obtenerTrabajadores() {
@@ -149,7 +230,7 @@ public class RestClientApp {
 		
 		try {
 			
-			Trabajador t = UtilS.leerTrabajador();
+			Trabajador t = LecturaFormula.leerTrabajador();
 			
 			System.err.println("LISTA DE ESCUDERIAS DISPONIBLES: ");
 			obtenerEscuderias().stream()

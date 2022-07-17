@@ -5,39 +5,88 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.sgv.FIA.model.Escuderia;
 import es.sgv.FIA.model.Piloto;
+import es.sgv.FIA.repository.EscuderiaRepository;
 import es.sgv.FIA.repository.PilotoRepository;
 
 @Service
 public class PilotoServiceImpl implements IPilotoService {
 	
 	@Autowired private PilotoRepository pilotoDAO;
+	@Autowired private EscuderiaRepository escuderiaDAO;
 
 	@Override
 	public boolean annadirPiloto(Piloto piloto) {
 		
 		boolean exito = false;
 		
-		try {
-			pilotoDAO.save(piloto);
-			exito = true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}	
+		if(!pilotoDAO.existsById(piloto.getId()))
+		{
+			try {
+				pilotoDAO.save(piloto);
+				exito = true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return exito;
+	}
+	
+	@Override
+	public boolean actualizarPiloto(Piloto piloto) {
+		
+		boolean exito = false;
+		
+		if(pilotoDAO.existsById(piloto.getId()))
+		{
+			try {
+				pilotoDAO.save(piloto);
+				exito = true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		return exito;
 	}
 
 	@Override
 	public boolean agregarPilotoProbadorEnEscuderia(Piloto piloto, String idEscuderia) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean exito = false;
+		
+		if(escuderiaDAO.existsById(idEscuderia))
+		{
+			Escuderia escuderia = escuderiaDAO.findById(idEscuderia).get();
+			
+			escuderia.getPilotosProbadores().add(piloto);
+			escuderiaDAO.save(escuderia);
+			
+			exito = true;
+		}
+		
+		return exito;		
 	}
 
 	@Override
 	public boolean annadirPilotoProbadorEnEscuderiaById(String idPiloto, String idEscuderia) {
-		// TODO Auto-generated method stub
-		return false;
+
+		boolean exito = false;
+		
+		if(escuderiaDAO.existsById(idEscuderia) && pilotoDAO.existsById(idPiloto))
+		{
+			Escuderia escuderia = escuderiaDAO.findById(idEscuderia).get();
+			Piloto piloto = pilotoDAO.findById(idPiloto).get();
+			
+			escuderia.getPilotosProbadores().add(piloto);
+			escuderiaDAO.save(escuderia);
+			
+			exito = true;
+		}
+		
+		return exito;	
 	}
 
 	@Override
@@ -58,7 +107,7 @@ public class PilotoServiceImpl implements IPilotoService {
 	@Override
 	public Piloto deletePilotoById(String id) {
 		
-		Piloto p = Piloto.builder().build();
+		Piloto p = Piloto.builder().id(id).build();
 		
 		if (pilotoDAO.existsById(id)) {
 			p = pilotoDAO.findById(id).get();

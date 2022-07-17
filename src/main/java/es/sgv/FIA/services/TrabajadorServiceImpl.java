@@ -53,20 +53,26 @@ public class TrabajadorServiceImpl implements ITrabajadorService {
 
 	@Override
 	public Optional<Trabajador> findTrabajadorById(String idTrabajador) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return trabajadorDAO.findById(idTrabajador);
 	}
 
 	@Override
 	public boolean existsByIdTrabajador(String id) {
-		// TODO Auto-generated method stub
-		return false;
+		return trabajadorDAO.existsById(id);
 	}
 
 	@Override
 	public Trabajador deleteTrabajadorById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Trabajador t = Trabajador.builder().id(id).build();
+		
+		if(trabajadorDAO.existsById(id))
+		{
+			t = trabajadorDAO.findById(id).get();
+			trabajadorDAO.deleteById(id);
+		}
+		
+		return t;
 	}
 
 }

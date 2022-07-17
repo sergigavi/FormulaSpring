@@ -15,8 +15,17 @@ public class EscuderiaServiceImpl implements IEscuderiaService {
 
 	@Override
 	public boolean annadirEscuderia(Escuderia escuderia) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean exito = false;
+		
+		try {
+			escuderiaDAO.save(escuderia);
+			exito = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return exito;
 	}
 
 	@Override
@@ -26,20 +35,26 @@ public class EscuderiaServiceImpl implements IEscuderiaService {
 
 	@Override
 	public Optional<Escuderia> findEscuderiaById(String idEscuderia) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		return escuderiaDAO.findById(idEscuderia);
 	}
 
 	@Override
 	public boolean existsByIdEscuderia(String id) {
-		// TODO Auto-generated method stub
-		return false;
+		return escuderiaDAO.existsById(id);
 	}
 
 	@Override
 	public Escuderia deleteEscuderiaById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Escuderia e = Escuderia.builder().id(id).build();
+		
+		if(escuderiaDAO.existsById(id))
+		{
+			e = escuderiaDAO.findById(id).get();
+			escuderiaDAO.deleteById(id);
+		}
+		
+		return e;
 	}
 
 	@Override

@@ -21,5 +21,7 @@ public interface IPilotoService {
 	public boolean existsByIdPiloto(String id);
 	
 	public Piloto deletePilotoById(String id);
+
+	boolean actualizarPiloto(Piloto piloto);
 	
 }
