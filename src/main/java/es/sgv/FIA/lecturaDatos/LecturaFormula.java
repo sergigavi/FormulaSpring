@@ -56,7 +56,7 @@ public class LecturaFormula {
 			
 			p.setId(leerTeclado("ID: "));
 			p.setNombre(leerTeclado("NOMBRE: "));
-			p.setDorsal(Integer.parseInt(leerTeclado("CARGO: ")));
+			p.setDorsal(Integer.parseInt(leerTeclado("DORSAL: ")));
 			p.setFechaNacimiento(LocalDate.parse(leerTeclado("FECHA NACIMIENTO YYYY-MM-DD: ")));
 			p.setUrlImage(leerTeclado("URL IMAGEN: "));
 			//.escuderia(leerTeclado("ESCUDERIA: ")) // Aqui podria sacar el dao y meterle la escuderia por id			
