@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+// * POR IMPLEMENTAR*
 //https://www.incanatoit.com/2015/06/libreria-swing-interfaces-gui-jframe.html#:~:text=Swing%20es%20una%20biblioteca%20de,usuario%20(GUI)%20para%20Java.&text=Viene%20inclu%C3%ADda%20con%20el%20entorno%20de%20desarrollo%20de%20Java%20(JDK).&text=Extiende%20a%20otra%20librer%C3%ADa%20gr%C3%A1fica%20m%C3%A1s%20antigua%20llamada%20AWT.
 
 public class InterfazGraficaApp {

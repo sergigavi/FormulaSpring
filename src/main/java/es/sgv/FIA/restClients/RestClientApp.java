@@ -16,8 +16,14 @@ import es.sgv.FIA.model.Trabajador;
 import es.sgv.FIAJSON.FormulaJSON;
 import es.sgv.utilS.UtilS;
 
+/*
+ * Aplicación de consola que permite realizar las acciones de los microservicios mediante un menu
+ */
 public class RestClientApp {
 	
+	/*
+	 * Variables estáticas para el correcto funcionamiento de la aplicación y las correctas llamadas a los controladores rest
+	 */
 	public static final String URL = "http://127.0.0.1:8080/";
 	public static final int numOpciones = 9;
 
@@ -27,6 +33,9 @@ public class RestClientApp {
 	
 	}
 	
+	/*
+	 * Funcion encargada de mostrar el menú y elegir las opciones deseadas
+	 */
 	private static void mostrarMenu() {
 		
 		String res = "";
@@ -65,6 +74,9 @@ public class RestClientApp {
 		
 	}
 
+	/*
+	 * Funcion encargada de elegir la opción y dependiendo de la variable llama a un metodo/s u otro
+	 */
 	private static void elegirOpcion(String res) {
 		
 		res = res.trim();
@@ -144,6 +156,9 @@ public class RestClientApp {
 		
 	}
 
+	/*
+	 * Acude al microservicio de añadir un mundial al piloto que deseemos
+	 */
 	private static boolean agregarMundialAPiloto() {
 		
 		
@@ -184,7 +199,10 @@ public class RestClientApp {
 		return exito;
 	}
 
-	private static boolean annadirPiloto() {
+	/*
+	 * Añade un piloto en la base de datos
+	 */
+	private static boolean annadirPiloto() { //TODO: Manejo de excepciones
 		
 		boolean exito = false;
 		
@@ -206,6 +224,9 @@ public class RestClientApp {
 		return exito;		
 	}
 
+	/*
+	 * Acude al microservicio que devuelve todos los trabajadores de la base de datos y los meustra por pantalla
+	 */
 	private static Set<Trabajador> obtenerTrabajadores() {
 
 		Set<Trabajador> misTrabajadores = new HashSet<Trabajador>();
@@ -224,6 +245,9 @@ public class RestClientApp {
 		return misTrabajadores;
 	}
 	
+	/*
+	 * Hace una llamada al microservicio e inserta un trabajador dentro de una de las escuderías disponibles
+	 */
 	private static boolean insertarTrabajadorEnEscuderia() {
 
 		boolean exito = false;
@@ -267,6 +291,9 @@ public class RestClientApp {
 		return exito;
 	}
 
+	/*
+	 * Llama al microservicio encargado de cargar los datos iniciales en mi base de datos H2 (posteriormente será diferente ya que se quiere convertir a ddbb mysql)
+	 */
 	private static void cargarDatos() {
 		
 		String miURL = URL + "FormulaSpring/escuderias/cargarDatos";
@@ -278,6 +305,9 @@ public class RestClientApp {
 		System.out.println(response.getBody());
 	}
 
+	/*
+	 * Llama al microservicio para obtener todas las escuderias y el menú las muestra por pantalla
+	 */
 	private static Set<Escuderia> obtenerEscuderias() {
 
 		Set<Escuderia> misEscuderias = new HashSet<Escuderia>();
@@ -296,6 +326,9 @@ public class RestClientApp {
 		return misEscuderias;
 	}
 	
+	/*
+	 * LLama al microservicio que obtiene todos los pilotos de la base de datos y el menú se encarga de mostrarlos por pantalla
+	 */
 	private static Set<Piloto> obtenerPilotos() {
 
 		Set<Piloto> misPilotos = new HashSet<Piloto>();
