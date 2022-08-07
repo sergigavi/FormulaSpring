@@ -179,6 +179,10 @@ public class EscuderiasRestController {
 				.urlImage(
 						"https://static.motor.es/fotos-noticias/2021/07/george-russell-piloto-mercedes-f1-2022-202179569-1626110071_4.jpg")
 				.build());
+		
+		pilotos.add(Piloto.builder().id("VB77").nombre("Valtteri Bottas").dorsal(77)
+				 .fechaNacimiento(LocalDate.of(1989, 8 , 28)) .urlImage("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Formula1Gabelhofen2022_%2802%29.jpg/338px-Formula1Gabelhofen2022_%2802%29.jpg")
+				 .build() );
 
 		/*
 		 * pilotos.add(Piloto.builder() .id("") .nombre("") .dorsal()
