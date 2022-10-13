@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,7 @@ import es.sgv.FIA.services.IEscuderiaService;
 import es.sgv.FIA.services.IPilotoService;
 import es.sgv.FIA.services.ITrabajadorService;
 
+@CrossOrigin	//	Esto permite que se acceda a la API saltandose el CORS (permite el fetch en javascript por ejemplo)	//https://spring.io/guides/gs/rest-service-cors/
 @RestController
 @RequestMapping("/FormulaSpring/escuderias")
 public class EscuderiasRestController {
