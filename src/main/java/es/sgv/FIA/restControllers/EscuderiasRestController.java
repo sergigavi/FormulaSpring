@@ -2,7 +2,10 @@ package es.sgv.FIA.restControllers;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
+
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,6 +49,19 @@ public class EscuderiasRestController {
 		Iterable<Escuderia> allEscuderias = escuderiaServicio.findAllEscuderias();
 
 		res = new ResponseEntity<Iterable<Escuderia>>(allEscuderias, HttpStatus.OK);
+
+		return res;
+	}
+	
+	//TODO: fixear esto
+	@GetMapping("/dameporId/{id}")
+	public ResponseEntity<Optional<Escuderia>> obtenerEscuderiaById(@PathParam(value = "id") String id) {
+
+		ResponseEntity<Optional<Escuderia>> res = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+		Optional<Escuderia> escuderia = escuderiaServicio.findEscuderiaById(id);
+
+		res = new ResponseEntity<Optional<Escuderia>>(escuderia, HttpStatus.OK);
 
 		return res;
 	}
@@ -183,7 +199,7 @@ public class EscuderiasRestController {
 				.build());
 		
 		pilotos.add(Piloto.builder().id("VB77").nombre("Valtteri Bottas").dorsal(77)
-				 .fechaNacimiento(LocalDate.of(1989, 8 , 28)) .urlImage("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Formula1Gabelhofen2022_%2802%29.jpg/338px-Formula1Gabelhofen2022_%2802%29.jpg")
+				 .fechaNacimiento(LocalDate.of(1989, 8 , 28)) .urlImage("https://phantom-marca.unidadeditorial.es/e182f3bb06b02e9767447638bb1d65ed/resize/1320/f/jpg/assets/multimedia/imagenes/2022/03/02/16462181912388.jpg")
 				 .build() );
 
 		/*
