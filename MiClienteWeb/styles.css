@@ -1,13 +1,14 @@
 
-#body{
-  align-items: center;
-  align-self: center;
-  align-content: center;
+.containerPilotos{
+  margin:auto;
+padding-left: 10%;
+  
 }
 
 .imagenPiloto{
-    
-  width: 12%;
-  height: 12%;
+  width: 14%;
+  height: 14%;
   
 }
+
+

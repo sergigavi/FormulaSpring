@@ -1,7 +1,7 @@
 
 const URL_API = 'http://127.0.1.1:8080/FormulaSpring'
 
-const aplicacion = document.querySelector('.container')
+const aplicacion = document.querySelector('.containerEscuderia')
 const getURL = new URLSearchParams(window.location.search)  // esto me saca lo que viene de la url despues de la ? (desglosa los parametros)
 
 //recogemos el parametro que nos viene por la url, el id
