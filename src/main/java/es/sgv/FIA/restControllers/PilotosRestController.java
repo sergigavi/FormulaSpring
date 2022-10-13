@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,6 +20,7 @@ import es.sgv.FIA.model.Mundial;
 import es.sgv.FIA.model.Piloto;
 import es.sgv.FIA.services.IPilotoService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/FormulaSpring/pilotos")
 public class PilotosRestController {
