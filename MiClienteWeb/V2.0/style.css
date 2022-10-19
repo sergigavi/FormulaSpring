@@ -1,0 +1,58 @@
+
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap');   /*Importo la fuente que quiero usar*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    background: #efefbb;
+    background: linear-gradient(to right, #6055c2, #853939);
+    font-family: 'Lato', sans-serif;
+    display: flex; /*Para que me lo muestre como flex y sea responsive*/
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+h1 {
+    letter-spacing: 3px;
+}
+
+.pilotoContainer {
+
+    display: flex;
+    flex-wrap: wrap; /*Si no cabe lo pasa a la siguiente fila*/
+    align-items: space-between;
+    justify-content: center;
+    margin: 0, auto;
+    max-width: 1200px; /*responsive asi jeje*/
+
+}
+
+.piloto {
+
+    background-color: #eee;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.piloto .imagenPiloto {
+
+    background-color: #d4d3dd;
+}
+
+.piloto .info {
+
+    background-color: #d4d3dd;
+}
+
+.piloto .mundiales {
+
+    background-color: #d4d3dd;
+}
