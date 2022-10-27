@@ -93,6 +93,7 @@ public class EscuderiasRestController {
 
 	@GetMapping("/cargarDatos")
 	public ResponseEntity<String> cargar_Datos() {
+	    
 		ResponseEntity<String> res = new ResponseEntity<>("Error insertando los datos", HttpStatus.BAD_REQUEST);
 
 		try {
